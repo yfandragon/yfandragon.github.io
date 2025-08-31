@@ -1,0 +1,216 @@
+/* ========== 自定义CSS变量 ========== */
+/* 这些变量可以在后续的样式中重复使用，方便统一管理颜色 */
+
+:root {
+    /* 奶茶色系变量 */
+    --milk-tea-light: #faf0e6; /* 最浅的奶茶色，用于背景 */
+    --milk-tea-main: #d2b48c; /* 主要奶茶色，用于重点元素 */
+    --milk-tea-dark: #8b7355; /* 深奶茶色，用于文字和边框 */
+    --milk-tea-accent: #cd853f; /* 强调色，用于悬停效果 */
+
+    /* 渐变色组合 */
+    --gradient-warm: linear-gradient(135deg, #faf0e6 0%, #d2b48c 100%);
+    --gradient-sunset: linear-gradient(
+            135deg,
+            #ffe4b5 0%,
+            #deb887 50%,
+            #cd853f 100%
+    );
+
+    /* 阴影效果 */
+    --shadow-soft: 0 4px 20px rgba(210, 180, 140, 0.3); /* 柔和阴影 */
+    --shadow-hover: 0 8px 30px rgba(210, 180, 140, 0.4); /* 悬停时的阴影 */
+}
+
+/* ========== 文章卡片美化 ========== */
+
+/* 基础卡片样式 */
+/*.recent-post-item {*/
+/*    background: var(--gradient-warm) !important; !* 使用我们定义的温暖渐变 *!*/
+/*    border-radius: 16px !important; !* 圆角边框 *!*/
+/*    box-shadow: var(--shadow-soft) !important; !* 柔和阴影 *!*/
+/*    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important; !* 平滑过渡动画 *!*/
+/*    overflow: hidden !important; !* 隐藏溢出内容 *!*/
+/*    position: relative !important; !* 为伪元素定位做准备 *!*/
+/*    border: none !important; !* 移除默认边框 *!*/
+/*}*/
+
+/* 悬停时的效果 */
+/*.recent-post-item:hover {*/
+/*    transform: translateY(-8px) !important; !* 向上移动8像素 *!*/
+/*    box-shadow: var(--shadow-hover) !important; !* 更强的阴影效果 *!*/
+/*}*/
+
+/* 光泽扫过效果 */
+/*.recent-post-item::before {*/
+/*    content: ""; !* 创建伪元素 *!*/
+/*    position: absolute; !* 绝对定位 *!*/
+/*    top: 0;*/
+/*    left: -100%; !* 初始位置在左侧外部 *!*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*    background: linear-gradient(*/
+/*            90deg,*/
+/*            transparent,*/
+/*            rgba(255, 255, 255, 0.2),*/
+/*            transparent*/
+/*    );*/
+/*    transition: left 0.5s ease; !* 移动动画 *!*/
+/*    z-index: 1; !* 确保在内容上方 *!*/
+/*}*/
+
+/* 悬停时光泽扫过 */
+/*.recent-post-item:hover::before {*/
+/*    left: 100%; !* 移动到右侧外部 *!*/
+/*}*/
+
+/* 确保卡片内容在光泽效果之上 */
+/*.recent-post-item .recent-post-info {*/
+/*    position: relative;*/
+/*    z-index: 2;*/
+/*}*/
+
+/* ========== 页面加载动画 ========== */
+
+/* 定义淡入上移动画 */
+/*@keyframes fadeInUp {*/
+/*    from {*/
+/*        opacity: 0; !* 初始完全透明 *!*/
+/*        transform: translateY(30px); !* 初始位置向下偏移30像素 *!*/
+/*    }*/
+/*    to {*/
+/*        opacity: 1; !* 最终完全不透明 *!*/
+/*        transform: translateY(0); !* 最终位置为正常位置 *!*/
+/*    }*/
+/*}*/
+
+/* 为文章卡片应用动画 */
+/*.recent-post-item {*/
+/*    animation: fadeInUp 0.6s ease-out; !* 动画持续0.6秒，缓出效果 *!*/
+/*    animation-fill-mode: both; !* 保持动画开始和结束状态 *!*/
+/*}*/
+
+/* 为不同的卡片设置不同的延迟时间，创造波浪效果 */
+/*.recent-post-item:nth-child(1) {*/
+/*    animation-delay: 0.1s;*/
+/*} !* 第1个卡片延迟0.1秒 *!*/
+/*.recent-post-item:nth-child(2) {*/
+/*    animation-delay: 0.2s;*/
+/*} !* 第2个卡片延迟0.2秒 *!*/
+/*.recent-post-item:nth-child(3) {*/
+/*    animation-delay: 0.3s;*/
+/*} !* 第3个卡片延迟0.3秒 *!*/
+/*.recent-post-item:nth-child(4) {*/
+/*    animation-delay: 0.4s;*/
+/*} !* 第4个卡片延迟0.4秒 *!*/
+/*.recent-post-item:nth-child(5) {*/
+/*    animation-delay: 0.5s;*/
+/*} !* 第5个卡片延迟0.5秒 *!*/
+/*.recent-post-item:nth-child(6) {*/
+/*    animation-delay: 0.6s;*/
+/*} !* 第6个卡片延迟0.6秒 *!*/
+
+/* ========== 导航栏交互动效 ========== */
+
+/* 导航栏菜单项基础样式 */
+#nav .menus_item {
+    position: relative; /* 为伪元素定位做准备 */
+    overflow: hidden; /* 隐藏溢出的动画元素 */
+}
+
+/* 创建下划线伪元素 */
+#nav .menus_item::after {
+    content: ""; /* 创建空的伪元素 */
+    position: absolute; /* 绝对定位 */
+    bottom: 0; /* 位于底部 */
+    left: 50%; /* 从中心开始 */
+    width: 0; /* 初始宽度为0 */
+    height: 2px; /* 下划线高度 */
+    background: var(--milk-tea-accent); /* 使用我们定义的强调色 */
+    transition: all 0.3s ease; /* 平滑过渡动画 */
+    transform: translateX(-50%); /* 居中对齐 */
+}
+
+/* 悬停时下划线展开 */
+#nav .menus_item:hover::after {
+    width: 80%; /* 悬停时宽度变为80% */
+}
+
+/* 为导航栏链接添加颜色过渡 */
+#nav .menus_item a {
+    transition: color 0.3s ease; /* 文字颜色平滑过渡 */
+}
+
+/* 悬停时文字颜色变化 */
+#nav .menus_item:hover a {
+    color: var(--milk-tea-accent) !important; /* 悬停时使用强调色 */
+}
+
+/* ========== 移动端响应式优化 ========== */
+
+/* 手机端样式（屏幕宽度小于768px） */
+/*@media (max-width: 768px) {*/
+/*    !* 文章卡片移动端优化 *!*/
+/*    .recent-post-item {*/
+/*        margin-bottom: 1rem !important; !* 减少卡片间距 *!*/
+/*        border-radius: 12px !important; !* 稍小的圆角，适合小屏 *!*/
+/*        padding: 1rem !important; !* 减少内边距 *!*/
+/*    }*/
+
+/*    !* 导航栏移动端优化 *!*/
+/*    #nav {*/
+/*        backdrop-filter: blur(10px) !important; !* 增强背景模糊 *!*/
+/*        background: rgba(250, 240, 230, 0.9) !important; !* 更不透明的背景 *!*/
+/*        padding: 0 1rem !important; !* 减少左右边距 *!*/
+/*    }*/
+
+/*    !* 侧边栏卡片移动端优化 *!*/
+/*    .card-widget {*/
+/*        margin-bottom: 1rem !important; !* 减少卡片间距 *!*/
+/*        box-shadow: 0 2px 12px rgba(210, 180, 140, 0.2) !important; !* 柔和阴影 *!*/
+/*        border-radius: 12px !important; !* 统一圆角 *!*/
+/*    }*/
+
+/*    !* 文章内容移动端优化 *!*/
+/*    .post-content {*/
+/*        font-size: 16px !important; !* 适合移动端的字体大小 *!*/
+/*        line-height: 1.6 !important; !* 增加行高，提升可读性 *!*/
+/*    }*/
+
+/*    !* 按钮移动端优化 *!*/
+/*    .btn,*/
+/*    button {*/
+/*        padding: 0.75rem 1.5rem !important; !* 增大按钮点击区域 *!*/
+/*        font-size: 16px !important; !* 适合触摸的字体大小 *!*/
+/*    }*/
+/*}*/
+
+/* ========== 平板端响应式优化 ========== */
+
+/* 平板端样式（屏幕宽度769px-1024px） */
+/*@media (min-width: 769px) and (max-width: 1024px) {*/
+/*    !* 文章卡片平板端布局 *!*/
+/*    .recent-post-item {*/
+/*        width: calc(50% - 1rem) !important; !* 两列布局，减去间距 *!*/
+/*        display: inline-block !important; !* 行内块元素 *!*/
+/*        vertical-align: top !important; !* 顶部对齐 *!*/
+/*        margin: 0.5rem !important; !* 统一外边距 *!*/
+/*    }*/
+
+/*    !* 侧边栏平板端优化 *!*/
+/*    .card-widget {*/
+/*        margin-bottom: 1.5rem !important; !* 适中的间距 *!*/
+/*    }*/
+
+/*    !* 导航栏平板端优化 *!*/
+/*    #nav {*/
+/*        padding: 0 2rem !important; !* 适中的左右边距 *!*/
+/*    }*/
+
+/*    !* 文章内容平板端优化 *!*/
+/*    .post-content {*/
+/*        font-size: 17px !important; !* 稍大的字体 *!*/
+/*        max-width: 90% !important; !* 限制最大宽度，提升可读性 *!*/
+/*        margin: 0 auto !important; !* 居中显示 *!*/
+/*    }*/
+/*}*/
